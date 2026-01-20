@@ -38,9 +38,6 @@ class ProductOfferAvailabilityStockStoragePublisherTest extends Unit
      */
     protected ProductOfferAvailabilityStorageCommunicationTester $tester;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -48,6 +45,7 @@ class ProductOfferAvailabilityStockStoragePublisherTest extends Unit
         $this->tester->setDependency(QueueDependencyProvider::QUEUE_ADAPTERS, function (Container $container) {
             return [
                 $container->getLocator()->rabbitMq()->client()->createQueueAdapter(),
+                $container->getLocator()->symfonyMessenger()->client()->createQueueAdapter(),
             ];
         });
     }
