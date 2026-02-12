@@ -78,4 +78,9 @@
         <property name="storeIds" type="array" singular="storeId"/>
     </transfer>
 
+    <transfer name="ProductOfferStorage">
+        <property name="isNeverOutOfStock" type="bool" strict="true"/>
+        <property name="stockQuantity" type="float" strict="true"/>
+    </transfer>
+
 </transfers>

@@ -12,6 +12,8 @@ use Spryker\Client\ProductOfferAvailabilityStorage\Dependency\Client\ProductOffe
 use Spryker\Client\ProductOfferAvailabilityStorage\Dependency\Client\ProductOfferAvailabilityStorageToStoreClientInterface;
 use Spryker\Client\ProductOfferAvailabilityStorage\Dependency\Service\ProductOfferAvailabilityStorageToSynchronizationServiceInterface;
 use Spryker\Client\ProductOfferAvailabilityStorage\Dependency\Service\ProductOfferAvailabilityStorageToUtilEncodingServiceInterface;
+use Spryker\Client\ProductOfferAvailabilityStorage\Expander\ProductOfferAvailabilityExpander;
+use Spryker\Client\ProductOfferAvailabilityStorage\Expander\ProductOfferAvailabilityExpanderInterface;
 use Spryker\Client\ProductOfferAvailabilityStorage\Reader\ProductOfferAvailabilityStorageReader;
 use Spryker\Client\ProductOfferAvailabilityStorage\Reader\ProductOfferAvailabilityStorageReaderInterface;
 
@@ -26,6 +28,14 @@ class ProductOfferAvailabilityStorageFactory extends AbstractFactory
             $this->getStorageClient(),
             $this->getSynchronizationService(),
             $this->getUtilEncodingService(),
+        );
+    }
+
+    public function createProductOfferAvailabilityExpander(): ProductOfferAvailabilityExpanderInterface
+    {
+        return new ProductOfferAvailabilityExpander(
+            $this->createProductOfferAvailabilityStorageReader(),
+            $this->getStoreClient(),
         );
     }
 
