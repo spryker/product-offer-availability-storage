@@ -10,9 +10,9 @@ namespace Spryker\Zed\ProductOfferAvailabilityStorage\Business\Filter;
 interface ProductOfferAvailabilityRequestFilterInterface
 {
     /**
-     * @param list<\Generated\Shared\Transfer\ProductOfferAvailabilityRequestTransfer> $productOfferAvailabilityRequestTransfers
+     * @param array<\Generated\Shared\Transfer\ProductOfferAvailabilityRequestTransfer> $productOfferAvailabilityRequestTransfers
      *
-     * @return list<\Generated\Shared\Transfer\ProductOfferAvailabilityRequestTransfer>
+     * @return array<\Generated\Shared\Transfer\ProductOfferAvailabilityRequestTransfer>
      */
     public function filterOutProductOfferAvailabilityRequestTransfersWithoutStores(array $productOfferAvailabilityRequestTransfers): array;
 }

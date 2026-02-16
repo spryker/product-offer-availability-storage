@@ -101,9 +101,9 @@ class ProductOfferAvailabilityStorageRepository extends AbstractRepository imple
     /**
      * @module Stock
      *
-     * @param list<int> $stockIds
+     * @param array<int> $stockIds
      *
-     * @return list<\Generated\Shared\Transfer\ProductOfferAvailabilityRequestTransfer>
+     * @return array<\Generated\Shared\Transfer\ProductOfferAvailabilityRequestTransfer>
      */
     public function getProductOfferAvailabilityRequestsByStockIds(array $stockIds): array
     {

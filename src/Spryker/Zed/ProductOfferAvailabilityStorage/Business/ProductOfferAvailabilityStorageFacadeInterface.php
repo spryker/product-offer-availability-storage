@@ -45,7 +45,7 @@ interface ProductOfferAvailabilityStorageFacadeInterface
      *
      * @api
      *
-     * @param list<\Generated\Shared\Transfer\EventEntityTransfer> $eventTransfers
+     * @param array<\Generated\Shared\Transfer\EventEntityTransfer> $eventTransfers
      *
      * @return void
      */
@@ -76,7 +76,7 @@ interface ProductOfferAvailabilityStorageFacadeInterface
      *
      * @api
      *
-     * @param list<\Generated\Shared\Transfer\EventEntityTransfer> $eventTransfers
+     * @param array<\Generated\Shared\Transfer\EventEntityTransfer> $eventTransfers
      *
      * @return void
      */
@@ -93,7 +93,7 @@ interface ProductOfferAvailabilityStorageFacadeInterface
      *
      * @api
      *
-     * @param list<\Generated\Shared\Transfer\EventEntityTransfer> $eventTransfers
+     * @param array<\Generated\Shared\Transfer\EventEntityTransfer> $eventTransfers
      *
      * @return void
      */

@@ -207,7 +207,7 @@ class ProductOfferAvailabilityStorageWriter implements ProductOfferAvailabilityS
     }
 
     /**
-     * @param list<\Generated\Shared\Transfer\ProductOfferAvailabilityRequestTransfer> $productOfferAvailabilityRequestTransfers
+     * @param array<\Generated\Shared\Transfer\ProductOfferAvailabilityRequestTransfer> $productOfferAvailabilityRequestTransfers
      *
      * @return void
      */

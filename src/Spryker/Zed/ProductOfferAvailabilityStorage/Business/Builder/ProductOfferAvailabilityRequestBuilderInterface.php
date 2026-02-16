@@ -10,10 +10,10 @@ namespace Spryker\Zed\ProductOfferAvailabilityStorage\Business\Builder;
 interface ProductOfferAvailabilityRequestBuilderInterface
 {
     /**
-     * @param list<\Generated\Shared\Transfer\ProductOfferAvailabilityRequestTransfer> $productOfferAvailabilityRequestTransfers
+     * @param array<\Generated\Shared\Transfer\ProductOfferAvailabilityRequestTransfer> $productOfferAvailabilityRequestTransfers
      * @param array<int, list<int>> $storeIdsGroupedByIdStock
      *
-     * @return list<\Generated\Shared\Transfer\ProductOfferAvailabilityRequestTransfer>
+     * @return array<\Generated\Shared\Transfer\ProductOfferAvailabilityRequestTransfer>
      */
     public function buildProductOfferAvailabilityRequestsWithStore(
         array $productOfferAvailabilityRequestTransfers,
