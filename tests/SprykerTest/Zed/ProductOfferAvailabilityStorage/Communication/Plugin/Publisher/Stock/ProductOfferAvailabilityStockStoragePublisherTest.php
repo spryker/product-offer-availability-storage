@@ -50,9 +50,6 @@ class ProductOfferAvailabilityStockStoragePublisherTest extends Unit
         });
     }
 
-    /**
-     * @return void
-     */
     public function testStoresDataForProductOfferAvailability(): void
     {
         // Arrange

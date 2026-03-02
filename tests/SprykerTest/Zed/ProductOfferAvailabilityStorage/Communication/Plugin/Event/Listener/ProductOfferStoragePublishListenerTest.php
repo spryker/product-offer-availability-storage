@@ -45,9 +45,6 @@ class ProductOfferStoragePublishListenerTest extends Unit
      */
     protected $tester;
 
-    /**
-     * @return void
-     */
     public function setUp(): void
     {
         parent::setUp();
@@ -64,9 +61,6 @@ class ProductOfferStoragePublishListenerTest extends Unit
         ]);
     }
 
-    /**
-     * @return void
-     */
     public function testProductOfferStoragePublishListenerStoresDataForProductOfferAvailability(): void
     {
         // Arrange

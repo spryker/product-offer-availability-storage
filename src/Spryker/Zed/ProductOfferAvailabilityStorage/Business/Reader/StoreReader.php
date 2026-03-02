@@ -17,9 +17,6 @@ class StoreReader implements StoreReaderInterface
      */
     protected ProductOfferAvailabilityStorageToStoreFacadeInterface $storeFacade;
 
-    /**
-     * @param \Spryker\Zed\ProductOfferAvailabilityStorage\Dependency\Facade\ProductOfferAvailabilityStorageToStoreFacadeInterface $storeFacade
-     */
     public function __construct(ProductOfferAvailabilityStorageToStoreFacadeInterface $storeFacade)
     {
         $this->storeFacade = $storeFacade;

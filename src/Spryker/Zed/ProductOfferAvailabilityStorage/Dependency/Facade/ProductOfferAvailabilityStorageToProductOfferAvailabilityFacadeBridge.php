@@ -25,11 +25,6 @@ class ProductOfferAvailabilityStorageToProductOfferAvailabilityFacadeBridge impl
         $this->productOfferAvailabilityFacade = $productOfferAvailabilityFacade;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductOfferAvailabilityRequestTransfer $productOfferAvailabilityRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductConcreteAvailabilityTransfer|null
-     */
     public function findProductConcreteAvailability(
         ProductOfferAvailabilityRequestTransfer $productOfferAvailabilityRequestTransfer
     ): ?ProductConcreteAvailabilityTransfer {

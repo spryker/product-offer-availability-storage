@@ -124,12 +124,6 @@ class ProductOfferAvailabilityStorageRepository extends AbstractRepository imple
         return $this->convertProductOfferAvailabilityRequestsDataToTransfers($productOfferAvailabilityRequestsData);
     }
 
-    /**
-     * @param string $offerReference
-     * @param string $storeName
-     *
-     * @return \Orm\Zed\ProductOfferAvailabilityStorage\Persistence\SpyProductOfferAvailabilityStorage|null
-     */
     public function findProductOfferAvailabilityStorageByProductOfferReferenceAndStoreName(
         string $offerReference,
         string $storeName

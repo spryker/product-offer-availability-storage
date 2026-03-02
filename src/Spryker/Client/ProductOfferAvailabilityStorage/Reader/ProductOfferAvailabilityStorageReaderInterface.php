@@ -11,12 +11,6 @@ use Generated\Shared\Transfer\ProductOfferAvailabilityStorageTransfer;
 
 interface ProductOfferAvailabilityStorageReaderInterface
 {
-    /**
-     * @param string $productOfferReference
-     * @param string $storeName
-     *
-     * @return \Generated\Shared\Transfer\ProductOfferAvailabilityStorageTransfer|null
-     */
     public function findByProductOfferReference(string $productOfferReference, string $storeName): ?ProductOfferAvailabilityStorageTransfer;
 
     /**

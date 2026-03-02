@@ -19,9 +19,6 @@ class ProductOfferAvailabilityRequestBuilder implements ProductOfferAvailability
      */
     protected StoreReaderInterface $storeReader;
 
-    /**
-     * @param \Spryker\Zed\ProductOfferAvailabilityStorage\Business\Reader\StoreReaderInterface $storeReader
-     */
     public function __construct(StoreReaderInterface $storeReader)
     {
         $this->storeReader = $storeReader;

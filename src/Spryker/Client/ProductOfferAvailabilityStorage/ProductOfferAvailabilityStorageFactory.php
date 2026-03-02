@@ -19,9 +19,6 @@ use Spryker\Client\ProductOfferAvailabilityStorage\Reader\ProductOfferAvailabili
 
 class ProductOfferAvailabilityStorageFactory extends AbstractFactory
 {
-    /**
-     * @return \Spryker\Client\ProductOfferAvailabilityStorage\Reader\ProductOfferAvailabilityStorageReaderInterface
-     */
     public function createProductOfferAvailabilityStorageReader(): ProductOfferAvailabilityStorageReaderInterface
     {
         return new ProductOfferAvailabilityStorageReader(
@@ -39,33 +36,21 @@ class ProductOfferAvailabilityStorageFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \Spryker\Client\ProductOfferAvailabilityStorage\Dependency\Client\ProductOfferAvailabilityStorageToStorageClientInterface
-     */
     public function getStorageClient(): ProductOfferAvailabilityStorageToStorageClientInterface
     {
         return $this->getProvidedDependency(ProductOfferAvailabilityStorageDependencyProvider::CLIENT_STORAGE);
     }
 
-    /**
-     * @return \Spryker\Client\ProductOfferAvailabilityStorage\Dependency\Client\ProductOfferAvailabilityStorageToStoreClientInterface
-     */
     public function getStoreClient(): ProductOfferAvailabilityStorageToStoreClientInterface
     {
         return $this->getProvidedDependency(ProductOfferAvailabilityStorageDependencyProvider::CLIENT_STORE);
     }
 
-    /**
-     * @return \Spryker\Client\ProductOfferAvailabilityStorage\Dependency\Service\ProductOfferAvailabilityStorageToSynchronizationServiceInterface
-     */
     public function getSynchronizationService(): ProductOfferAvailabilityStorageToSynchronizationServiceInterface
     {
         return $this->getProvidedDependency(ProductOfferAvailabilityStorageDependencyProvider::SERVICE_SYNCHRONIZATION);
     }
 
-    /**
-     * @return \Spryker\Client\ProductOfferAvailabilityStorage\Dependency\Service\ProductOfferAvailabilityStorageToUtilEncodingServiceInterface
-     */
     public function getUtilEncodingService(): ProductOfferAvailabilityStorageToUtilEncodingServiceInterface
     {
         return $this->getProvidedDependency(ProductOfferAvailabilityStorageDependencyProvider::SERVICE_UTIL_ENCODING);

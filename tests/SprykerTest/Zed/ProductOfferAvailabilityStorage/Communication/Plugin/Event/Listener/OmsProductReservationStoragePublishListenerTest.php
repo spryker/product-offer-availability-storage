@@ -46,9 +46,6 @@ class OmsProductReservationStoragePublishListenerTest extends Unit
      */
     protected $tester;
 
-    /**
-     * @return void
-     */
     public function setUp(): void
     {
         parent::setUp();
@@ -65,9 +62,6 @@ class OmsProductReservationStoragePublishListenerTest extends Unit
         ]);
     }
 
-    /**
-     * @return void
-     */
     public function testOmsProductReservationStoragePublishListenerStoresDataForProductOfferAvailability(): void
     {
         // Arrange

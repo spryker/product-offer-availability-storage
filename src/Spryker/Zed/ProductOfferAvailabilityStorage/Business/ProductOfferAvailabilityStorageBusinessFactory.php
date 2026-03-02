@@ -29,9 +29,6 @@ use Spryker\Zed\ProductOfferAvailabilityStorage\ProductOfferAvailabilityStorageD
  */
 class ProductOfferAvailabilityStorageBusinessFactory extends AbstractBusinessFactory
 {
-    /**
-     * @return \Spryker\Zed\ProductOfferAvailabilityStorage\Business\Writer\ProductOfferAvailabilityStorageWriterInterface
-     */
     public function createProductOfferAvailabilityStorageWriter(): ProductOfferAvailabilityStorageWriterInterface
     {
         return new ProductOfferAvailabilityStorageWriter(
@@ -45,17 +42,11 @@ class ProductOfferAvailabilityStorageBusinessFactory extends AbstractBusinessFac
         );
     }
 
-    /**
-     * @return \Spryker\Zed\ProductOfferAvailabilityStorage\Business\Filter\ProductOfferAvailabilityRequestFilterInterface
-     */
     public function createProductOfferAvailabilityRequestFilter(): ProductOfferAvailabilityRequestFilterInterface
     {
         return new ProductOfferAvailabilityRequestFilter();
     }
 
-    /**
-     * @return \Spryker\Zed\ProductOfferAvailabilityStorage\Business\Builder\ProductOfferAvailabilityRequestBuilderInterface
-     */
     public function createProductOfferAvailabilityRequestBuilder(): ProductOfferAvailabilityRequestBuilderInterface
     {
         return new ProductOfferAvailabilityRequestBuilder(
@@ -63,9 +54,6 @@ class ProductOfferAvailabilityStorageBusinessFactory extends AbstractBusinessFac
         );
     }
 
-    /**
-     * @return \Spryker\Zed\ProductOfferAvailabilityStorage\Business\Reader\StoreReaderInterface
-     */
     public function createStoreReader(): StoreReaderInterface
     {
         return new StoreReader(
@@ -73,33 +61,21 @@ class ProductOfferAvailabilityStorageBusinessFactory extends AbstractBusinessFac
         );
     }
 
-    /**
-     * @return \Spryker\Zed\ProductOfferAvailabilityStorage\Dependency\Facade\ProductOfferAvailabilityStorageToEventBehaviorFacadeInterface
-     */
     public function getEventBehaviorFacade(): ProductOfferAvailabilityStorageToEventBehaviorFacadeInterface
     {
         return $this->getProvidedDependency(ProductOfferAvailabilityStorageDependencyProvider::FACADE_EVENT_BEHAVIOR);
     }
 
-    /**
-     * @return \Spryker\Zed\ProductOfferAvailabilityStorage\Dependency\Facade\ProductOfferAvailabilityStorageToProductOfferAvailabilityFacadeInterface
-     */
     public function getProductOfferAvailabilityFacade(): ProductOfferAvailabilityStorageToProductOfferAvailabilityFacadeInterface
     {
         return $this->getProvidedDependency(ProductOfferAvailabilityStorageDependencyProvider::FACADE_PRODUCT_OFFER_AVAILABILITY_FACADE);
     }
 
-    /**
-     * @return \Spryker\Zed\ProductOfferAvailabilityStorage\Dependency\Service\ProductOfferAvailabilityStorageToSynchronizationServiceInterface
-     */
     public function getSynchronizationService(): ProductOfferAvailabilityStorageToSynchronizationServiceInterface
     {
         return $this->getProvidedDependency(ProductOfferAvailabilityStorageDependencyProvider::SERVICE_SYNCHRONIZATION);
     }
 
-    /**
-     * @return \Spryker\Zed\ProductOfferAvailabilityStorage\Dependency\Facade\ProductOfferAvailabilityStorageToStoreFacadeInterface
-     */
     public function getStoreFacade(): ProductOfferAvailabilityStorageToStoreFacadeInterface
     {
         return $this->getProvidedDependency(ProductOfferAvailabilityStorageDependencyProvider::FACADE_STORE);

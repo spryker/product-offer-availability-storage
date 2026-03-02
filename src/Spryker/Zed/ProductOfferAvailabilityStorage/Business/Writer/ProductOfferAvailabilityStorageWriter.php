@@ -78,15 +78,6 @@ class ProductOfferAvailabilityStorageWriter implements ProductOfferAvailabilityS
      */
     protected bool $isSendingToQueue;
 
-    /**
-     * @param \Spryker\Zed\ProductOfferAvailabilityStorage\Dependency\Facade\ProductOfferAvailabilityStorageToEventBehaviorFacadeInterface $eventBehaviorFacade
-     * @param \Spryker\Zed\ProductOfferAvailabilityStorage\Dependency\Facade\ProductOfferAvailabilityStorageToProductOfferAvailabilityFacadeInterface $productOfferAvailabilityFacade
-     * @param \Spryker\Zed\ProductOfferAvailabilityStorage\Dependency\Service\ProductOfferAvailabilityStorageToSynchronizationServiceInterface $synchronizationService
-     * @param \Spryker\Zed\ProductOfferAvailabilityStorage\Persistence\ProductOfferAvailabilityStorageRepositoryInterface $productOfferAvailabilityStorageRepository
-     * @param \Spryker\Zed\ProductOfferAvailabilityStorage\Business\Builder\ProductOfferAvailabilityRequestBuilderInterface $productOfferAvailabilityRequestBuilder
-     * @param \Spryker\Zed\ProductOfferAvailabilityStorage\Business\Filter\ProductOfferAvailabilityRequestFilterInterface $productOfferAvailabilityRequestFilter
-     * @param bool $isSendingToQueue
-     */
     public function __construct(
         ProductOfferAvailabilityStorageToEventBehaviorFacadeInterface $eventBehaviorFacade,
         ProductOfferAvailabilityStorageToProductOfferAvailabilityFacadeInterface $productOfferAvailabilityFacade,
@@ -268,12 +259,6 @@ class ProductOfferAvailabilityStorageWriter implements ProductOfferAvailabilityS
         return $storeIdsGroupedByIdStock;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductConcreteAvailabilityTransfer $productConcreteAvailabilityTransfer
-     * @param \Generated\Shared\Transfer\ProductOfferAvailabilityStorageTransfer $productOfferAvailabilityStorageTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductOfferAvailabilityStorageTransfer
-     */
     protected function mapProductConcreteAvailabilityTransferToProductOfferAvailabilityStorageTransfer(
         ProductConcreteAvailabilityTransfer $productConcreteAvailabilityTransfer,
         ProductOfferAvailabilityStorageTransfer $productOfferAvailabilityStorageTransfer
@@ -284,11 +269,6 @@ class ProductOfferAvailabilityStorageWriter implements ProductOfferAvailabilityS
         return $productOfferAvailabilityStorageTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductOfferAvailabilityRequestTransfer $productOfferAvailabilityRequestTransfer
-     *
-     * @return string
-     */
     protected function generateKey(ProductOfferAvailabilityRequestTransfer $productOfferAvailabilityRequestTransfer): string
     {
         $synchronizationDataTransfer = (new SynchronizationDataTransfer())

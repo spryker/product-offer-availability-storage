@@ -31,12 +31,6 @@ class ProductOfferAvailabilityStorageCommunicationTester extends Actor
 {
     use _generated\ProductOfferAvailabilityStorageCommunicationTesterActions;
 
-    /**
-     * @param string $storeName
-     * @param string $productOfferReference
-     *
-     * @return \Orm\Zed\ProductOfferAvailabilityStorage\Persistence\SpyProductOfferAvailabilityStorage|null
-     */
     protected function findProductOfferAvailabilityStorage(string $storeName, string $productOfferReference): ?SpyProductOfferAvailabilityStorage
     {
         return $this->getProductOfferAvailabilityStoragePropelQuery()
@@ -44,12 +38,6 @@ class ProductOfferAvailabilityStorageCommunicationTester extends Actor
             ->findOneByProductOfferReference($productOfferReference);
     }
 
-    /**
-     * @param string $storeName
-     * @param string $productOfferReference
-     *
-     * @return \Spryker\DecimalObject\Decimal
-     */
     public function getProductOfferAvailability(string $storeName, string $productOfferReference): Decimal
     {
         $productOfferAvailabilityStorageEntity = $this->findProductOfferAvailabilityStorage($storeName, $productOfferReference);
@@ -61,9 +49,6 @@ class ProductOfferAvailabilityStorageCommunicationTester extends Actor
         return new Decimal($productOfferAvailabilityStorageEntity->getData()[ProductOfferAvailabilityStorageTransfer::AVAILABILITY]);
     }
 
-    /**
-     * @return \Orm\Zed\ProductOfferAvailabilityStorage\Persistence\SpyProductOfferAvailabilityStorageQuery
-     */
     protected function getProductOfferAvailabilityStoragePropelQuery(): SpyProductOfferAvailabilityStorageQuery
     {
         return SpyProductOfferAvailabilityStorageQuery::create();

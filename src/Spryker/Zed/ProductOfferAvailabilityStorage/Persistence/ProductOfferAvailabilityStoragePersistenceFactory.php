@@ -21,25 +21,16 @@ use Spryker\Zed\ProductOfferAvailabilityStorage\ProductOfferAvailabilityStorageD
  */
 class ProductOfferAvailabilityStoragePersistenceFactory extends AbstractPersistenceFactory
 {
-    /**
-     * @return \Orm\Zed\ProductOfferStock\Persistence\SpyProductOfferStockQuery
-     */
     public function getProductOfferStockPropelQuery(): SpyProductOfferStockQuery
     {
         return $this->getProvidedDependency(ProductOfferAvailabilityStorageDependencyProvider::PROPEL_QUERY_PRODUCT_OFFER_STOCK);
     }
 
-    /**
-     * @return \Spryker\Zed\ProductOfferAvailabilityStorage\Persistence\Propel\Mapper\ProductOfferAvailabilityStorageMapperInterface
-     */
     public function createProductOfferAvailabilityStorageMapper(): ProductOfferAvailabilityStorageMapperInterface
     {
         return new ProductOfferAvailabilityStorageMapper();
     }
 
-    /**
-     * @return \Orm\Zed\ProductOfferAvailabilityStorage\Persistence\SpyProductOfferAvailabilityStorageQuery
-     */
     public function getProductOfferAvailabilityStoragePropelQuery(): SpyProductOfferAvailabilityStorageQuery
     {
         return SpyProductOfferAvailabilityStorageQuery::create();

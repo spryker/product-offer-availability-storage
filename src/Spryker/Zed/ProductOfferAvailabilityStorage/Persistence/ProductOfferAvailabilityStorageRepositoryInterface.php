@@ -40,12 +40,6 @@ interface ProductOfferAvailabilityStorageRepositoryInterface
      */
     public function getProductOfferAvailabilityRequestsByStockIds(array $stockIds): array;
 
-    /**
-     * @param string $offerReference
-     * @param string $storeName
-     *
-     * @return \Orm\Zed\ProductOfferAvailabilityStorage\Persistence\SpyProductOfferAvailabilityStorage|null
-     */
     public function findProductOfferAvailabilityStorageByProductOfferReferenceAndStoreName(
         string $offerReference,
         string $storeName

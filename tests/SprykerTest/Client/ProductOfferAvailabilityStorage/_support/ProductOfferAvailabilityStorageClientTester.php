@@ -45,11 +45,6 @@ class ProductOfferAvailabilityStorageClientTester extends Actor
      */
     protected array $storageData = [];
 
-    /**
-     * @param string $currentStore
-     *
-     * @return void
-     */
     public function mockStoreClient(string $currentStore): void
     {
         $storeTransfer = (new StoreTransfer())->setName($currentStore);

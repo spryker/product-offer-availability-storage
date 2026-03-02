@@ -12,10 +12,5 @@ use Generated\Shared\Transfer\StoreCriteriaTransfer;
 
 interface ProductOfferAvailabilityStorageToStoreFacadeInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\StoreCriteriaTransfer $storeCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\StoreCollectionTransfer
-     */
     public function getStoreCollection(StoreCriteriaTransfer $storeCriteriaTransfer): StoreCollectionTransfer;
 }

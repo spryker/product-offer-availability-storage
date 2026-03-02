@@ -25,11 +25,6 @@ class ProductOfferAvailabilityStorageToStoreFacadeBridge implements ProductOffer
         $this->storeFacade = $storeFacade;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\StoreCriteriaTransfer $storeCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\StoreCollectionTransfer
-     */
     public function getStoreCollection(StoreCriteriaTransfer $storeCriteriaTransfer): StoreCollectionTransfer
     {
         return $this->storeFacade->getStoreCollection($storeCriteriaTransfer);

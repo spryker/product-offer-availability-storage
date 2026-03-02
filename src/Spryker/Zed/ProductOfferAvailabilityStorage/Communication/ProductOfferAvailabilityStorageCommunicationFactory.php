@@ -19,9 +19,6 @@ use Spryker\Zed\ProductOfferAvailabilityStorage\ProductOfferAvailabilityStorageD
  */
 class ProductOfferAvailabilityStorageCommunicationFactory extends AbstractCommunicationFactory
 {
-    /**
-     * @return \Spryker\Zed\ProductOfferAvailabilityStorage\Dependency\Facade\ProductOfferAvailabilityStorageToProductOfferFacadeInterface
-     */
     public function getProductOfferFacade(): ProductOfferAvailabilityStorageToProductOfferFacadeInterface
     {
         return $this->getProvidedDependency(ProductOfferAvailabilityStorageDependencyProvider::FACADE_PRODUCT_OFFER);

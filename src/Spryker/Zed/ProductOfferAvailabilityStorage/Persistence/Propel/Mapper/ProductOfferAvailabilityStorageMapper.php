@@ -51,12 +51,6 @@ class ProductOfferAvailabilityStorageMapper implements ProductOfferAvailabilityS
         return $stockTransfer->setIdStock($productOfferAvailabilityRequestData[static::COL_ALIAS_ID_STOCK]);
     }
 
-    /**
-     * @param array $productOfferAvailabilityRequestData
-     * @param \Generated\Shared\Transfer\StoreTransfer $storeTransfer
-     *
-     * @return \Generated\Shared\Transfer\StoreTransfer
-     */
     protected function mapProductOfferAvailabilityRequestDataToStoreTransfer(
         array $productOfferAvailabilityRequestData,
         StoreTransfer $storeTransfer

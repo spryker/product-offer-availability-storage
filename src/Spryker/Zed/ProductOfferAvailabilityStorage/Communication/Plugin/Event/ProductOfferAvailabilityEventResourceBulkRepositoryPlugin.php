@@ -91,11 +91,6 @@ class ProductOfferAvailabilityEventResourceBulkRepositoryPlugin extends Abstract
         return SpyProductOfferTableMap::COL_ID_PRODUCT_OFFER;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PaginationTransfer $paginationTransfer
-     *
-     * @return bool
-     */
     protected function isOutOfPages(PaginationTransfer $paginationTransfer): bool
     {
         return $paginationTransfer->getNbResults()

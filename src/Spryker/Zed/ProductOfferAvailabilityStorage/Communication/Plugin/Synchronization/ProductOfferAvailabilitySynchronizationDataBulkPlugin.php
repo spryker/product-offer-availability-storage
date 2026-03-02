@@ -109,12 +109,6 @@ class ProductOfferAvailabilitySynchronizationDataBulkPlugin extends AbstractPlug
         return $this->getFactory()->getConfig()->getProductOfferAvailabilitySynchronizationPoolName();
     }
 
-    /**
-     * @param int $offset
-     * @param int $limit
-     *
-     * @return \Generated\Shared\Transfer\FilterTransfer
-     */
     protected function createFilterTransfer(int $offset, int $limit): FilterTransfer
     {
         return (new FilterTransfer())
@@ -123,11 +117,6 @@ class ProductOfferAvailabilitySynchronizationDataBulkPlugin extends AbstractPlug
             ->setLimit($limit);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\SpyProductOfferAvailabilityStorageEntityTransfer $productOfferAvailabilityStorageEntityTransfer
-     *
-     * @return \Generated\Shared\Transfer\SynchronizationDataTransfer
-     */
     protected function createSynchronizationDataTransfer(
         SpyProductOfferAvailabilityStorageEntityTransfer $productOfferAvailabilityStorageEntityTransfer
     ): SynchronizationDataTransfer {

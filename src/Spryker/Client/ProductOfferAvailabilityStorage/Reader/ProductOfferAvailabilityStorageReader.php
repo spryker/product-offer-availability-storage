@@ -36,11 +36,6 @@ class ProductOfferAvailabilityStorageReader implements ProductOfferAvailabilityS
      */
     protected $utilEncodingService;
 
-    /**
-     * @param \Spryker\Client\ProductOfferAvailabilityStorage\Dependency\Client\ProductOfferAvailabilityStorageToStorageClientInterface $storageClient
-     * @param \Spryker\Client\ProductOfferAvailabilityStorage\Dependency\Service\ProductOfferAvailabilityStorageToSynchronizationServiceInterface $synchronizationService
-     * @param \Spryker\Client\ProductOfferAvailabilityStorage\Dependency\Service\ProductOfferAvailabilityStorageToUtilEncodingServiceInterface $utilEncodingService
-     */
     public function __construct(
         ProductOfferAvailabilityStorageToStorageClientInterface $storageClient,
         ProductOfferAvailabilityStorageToSynchronizationServiceInterface $synchronizationService,
@@ -51,12 +46,6 @@ class ProductOfferAvailabilityStorageReader implements ProductOfferAvailabilityS
         $this->utilEncodingService = $utilEncodingService;
     }
 
-    /**
-     * @param string $productOfferReference
-     * @param string $storeName
-     *
-     * @return \Generated\Shared\Transfer\ProductOfferAvailabilityStorageTransfer|null
-     */
     public function findByProductOfferReference(string $productOfferReference, string $storeName): ?ProductOfferAvailabilityStorageTransfer
     {
         $productOfferAvailabilityStorageTransferData = $this->storageClient->get(
@@ -106,12 +95,6 @@ class ProductOfferAvailabilityStorageReader implements ProductOfferAvailabilityS
         return $productOfferAvailabilityStorageTransfers;
     }
 
-    /**
-     * @param array $productOfferAvailabilityStorageTransferData
-     * @param \Generated\Shared\Transfer\ProductOfferAvailabilityStorageTransfer $productOfferAvailabilityStorageTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductOfferAvailabilityStorageTransfer
-     */
     protected function mapToProductOfferAvailabilityStorageDataToTransfer(
         array $productOfferAvailabilityStorageTransferData,
         ProductOfferAvailabilityStorageTransfer $productOfferAvailabilityStorageTransfer
@@ -142,12 +125,6 @@ class ProductOfferAvailabilityStorageReader implements ProductOfferAvailabilityS
         return $productOfferAvailabilityStorageKeys;
     }
 
-    /**
-     * @param string $productOfferReference
-     * @param string $storeName
-     *
-     * @return string
-     */
     protected function generateKey(string $productOfferReference, string $storeName): string
     {
         $synchronizationDataTransfer = (new SynchronizationDataTransfer())
@@ -159,11 +136,6 @@ class ProductOfferAvailabilityStorageReader implements ProductOfferAvailabilityS
             ->generateKey($synchronizationDataTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductOfferAvailabilityStorageTransfer $productOfferAvailabilityStorageTransfer
-     *
-     * @return bool
-     */
     protected function isProductOfferAvailable(ProductOfferAvailabilityStorageTransfer $productOfferAvailabilityStorageTransfer): bool
     {
         $availability = $productOfferAvailabilityStorageTransfer->getAvailability();
