@@ -106,4 +106,14 @@ class ProductOfferAvailabilityStorageConfig extends AbstractBundleConfig
      * @var string
      */
     public const ENTITY_SPY_STOCK_UPDATE = 'Entity.spy_stock.update';
+
+    /**
+     * Specification:
+     * - Queue name used for product offer availability publish events.
+     *
+     * @api
+     *
+     * @var string
+     */
+    public const string PUBLISH_PRODUCT_OFFER_AVAILABILITY_QUEUE = 'publish.product_offer_availability';
 }
