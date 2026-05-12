@@ -8,7 +8,6 @@
 namespace Spryker\Zed\ProductOfferAvailabilityStorage\Persistence;
 
 use Generated\Shared\Transfer\FilterTransfer;
-use Orm\Zed\ProductOfferAvailabilityStorage\Persistence\SpyProductOfferAvailabilityStorage;
 
 interface ProductOfferAvailabilityStorageRepositoryInterface
 {
@@ -40,10 +39,12 @@ interface ProductOfferAvailabilityStorageRepositoryInterface
      */
     public function getProductOfferAvailabilityRequestsByStockIds(array $stockIds): array;
 
-    public function findProductOfferAvailabilityStorageByProductOfferReferenceAndStoreName(
-        string $offerReference,
-        string $storeName
-    ): ?SpyProductOfferAvailabilityStorage;
+    /**
+     * @param array<string> $productOfferReferences
+     *
+     * @return array<string, array<string, \Orm\Zed\ProductOfferAvailabilityStorage\Persistence\SpyProductOfferAvailabilityStorage>> First level keys are product offer references, second level keys are store names.
+     */
+    public function getProductOfferAvailabilityStorageMapByProductOfferReferences(array $productOfferReferences): array;
 
     /**
      * @param \Generated\Shared\Transfer\FilterTransfer $filterTransfer

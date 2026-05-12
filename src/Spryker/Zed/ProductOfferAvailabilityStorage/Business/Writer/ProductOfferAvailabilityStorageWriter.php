@@ -19,9 +19,12 @@ use Spryker\Zed\ProductOfferAvailabilityStorage\Dependency\Facade\ProductOfferAv
 use Spryker\Zed\ProductOfferAvailabilityStorage\Dependency\Facade\ProductOfferAvailabilityStorageToProductOfferAvailabilityFacadeInterface;
 use Spryker\Zed\ProductOfferAvailabilityStorage\Dependency\Service\ProductOfferAvailabilityStorageToSynchronizationServiceInterface;
 use Spryker\Zed\ProductOfferAvailabilityStorage\Persistence\ProductOfferAvailabilityStorageRepositoryInterface;
+use Spryker\Zed\Propel\Persistence\BatchProcessor\ActiveRecordBatchProcessorTrait;
 
 class ProductOfferAvailabilityStorageWriter implements ProductOfferAvailabilityStorageWriterInterface
 {
+    use ActiveRecordBatchProcessorTrait;
+
     /**
      * @uses \Orm\Zed\ProductOffer\Persistence\Map\SpyProductOfferStoreTableMap::COL_FK_PRODUCT_OFFER
      *
@@ -204,15 +207,23 @@ class ProductOfferAvailabilityStorageWriter implements ProductOfferAvailabilityS
      */
     protected function writeProductOfferAvailabilityStorageForRequests(array $productOfferAvailabilityRequestTransfers): void
     {
+        $productOfferReferences = array_map(
+            static fn (ProductOfferAvailabilityRequestTransfer $transfer) => $transfer->getProductOfferReferenceOrFail(),
+            $productOfferAvailabilityRequestTransfers,
+        );
+
+        $storageEntityMap = $this->productOfferAvailabilityStorageRepository
+            ->getProductOfferAvailabilityStorageMapByProductOfferReferences($productOfferReferences);
+
         foreach ($productOfferAvailabilityRequestTransfers as $productOfferAvailabilityRequestTransfer) {
             $productOfferAvailabilityTransfer = $this->productOfferAvailabilityFacade->findProductConcreteAvailability($productOfferAvailabilityRequestTransfer);
-            $productOfferAvailabilityStorageEntity = $this->productOfferAvailabilityStorageRepository->findProductOfferAvailabilityStorageByProductOfferReferenceAndStoreName(
-                $productOfferAvailabilityRequestTransfer->getProductOfferReferenceOrFail(),
-                $productOfferAvailabilityRequestTransfer->getStoreOrFail()->getNameOrFail(),
-            );
+
+            $productOfferReference = $productOfferAvailabilityRequestTransfer->getProductOfferReferenceOrFail();
+            $storeName = $productOfferAvailabilityRequestTransfer->getStoreOrFail()->getNameOrFail();
+            $productOfferAvailabilityStorageEntity = $storageEntityMap[$productOfferReference][$storeName] ?? null;
 
             if (!$productOfferAvailabilityTransfer && $productOfferAvailabilityStorageEntity) {
-                $productOfferAvailabilityStorageEntity->delete();
+                $this->remove($productOfferAvailabilityStorageEntity);
 
                 return;
             }
@@ -236,9 +247,11 @@ class ProductOfferAvailabilityStorageWriter implements ProductOfferAvailabilityS
                 ->setStore(
                     $productOfferAvailabilityRequestTransfer->getStoreOrFail()->getNameOrFail(),
                 )
-                ->setData($productOfferAvailabilityStorageTransfer->toArray())
-                ->save();
+                ->setData($productOfferAvailabilityStorageTransfer->toArray());
+
+            $this->persist($productOfferAvailabilityStorageEntity);
         }
+        $this->commit();
     }
 
     /**

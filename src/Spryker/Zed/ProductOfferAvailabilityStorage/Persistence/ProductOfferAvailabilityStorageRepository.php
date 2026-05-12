@@ -11,7 +11,6 @@ use Generated\Shared\Transfer\FilterTransfer;
 use Generated\Shared\Transfer\ProductOfferAvailabilityRequestTransfer;
 use Orm\Zed\OmsProductOfferReservation\Persistence\Map\SpyOmsProductOfferReservationTableMap;
 use Orm\Zed\ProductOffer\Persistence\Map\SpyProductOfferTableMap;
-use Orm\Zed\ProductOfferAvailabilityStorage\Persistence\SpyProductOfferAvailabilityStorage;
 use Orm\Zed\ProductOfferStock\Persistence\Map\SpyProductOfferStockTableMap;
 use Orm\Zed\Store\Persistence\Map\SpyStoreTableMap;
 use Propel\Runtime\ActiveQuery\ModelCriteria;
@@ -124,15 +123,24 @@ class ProductOfferAvailabilityStorageRepository extends AbstractRepository imple
         return $this->convertProductOfferAvailabilityRequestsDataToTransfers($productOfferAvailabilityRequestsData);
     }
 
-    public function findProductOfferAvailabilityStorageByProductOfferReferenceAndStoreName(
-        string $offerReference,
-        string $storeName
-    ): ?SpyProductOfferAvailabilityStorage {
-        return $this->getFactory()
+    /**
+     * @param array<string> $productOfferReferences
+     *
+     * @return array<string, array<string, \Orm\Zed\ProductOfferAvailabilityStorage\Persistence\SpyProductOfferAvailabilityStorage>> First level keys are product offer references, second level keys are store names.
+     */
+    public function getProductOfferAvailabilityStorageMapByProductOfferReferences(array $productOfferReferences): array
+    {
+        $storageEntities = $this->getFactory()
             ->getProductOfferAvailabilityStoragePropelQuery()
-            ->filterByProductOfferReference($offerReference)
-            ->filterByStore($storeName)
-            ->findOne();
+            ->filterByProductOfferReference_In($productOfferReferences)
+            ->find();
+
+        $storageEntityMap = [];
+        foreach ($storageEntities as $storageEntity) {
+            $storageEntityMap[$storageEntity->getProductOfferReference()][$storageEntity->getStore()] = $storageEntity;
+        }
+
+        return $storageEntityMap;
     }
 
     /**
