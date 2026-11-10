@@ -7,9 +7,9 @@
 
 namespace Spryker\Shared\ProductOfferAvailabilityStorage;
 
-use Spryker\Shared\Kernel\AbstractBundleConfig;
+use Spryker\Shared\Kernel\AbstractSharedConfig;
 
-class ProductOfferAvailabilityStorageConfig extends AbstractBundleConfig
+class ProductOfferAvailabilityStorageConfig extends AbstractSharedConfig
 {
     /**
      * Specification:
