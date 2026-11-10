@@ -9,6 +9,11 @@ namespace SprykerTest\Zed\ProductOfferAvailabilityStorage;
 
 use Codeception\Actor;
 use Generated\Shared\Transfer\ProductOfferAvailabilityStorageTransfer;
+use Generated\Shared\Transfer\ProductOfferStockTransfer;
+use Generated\Shared\Transfer\ProductOfferTransfer;
+use Generated\Shared\Transfer\StockTransfer;
+use Generated\Shared\Transfer\StoreRelationTransfer;
+use Generated\Shared\Transfer\StoreTransfer;
 use Orm\Zed\ProductOfferAvailabilityStorage\Persistence\SpyProductOfferAvailabilityStorage;
 use Orm\Zed\ProductOfferAvailabilityStorage\Persistence\SpyProductOfferAvailabilityStorageQuery;
 use Spryker\DecimalObject\Decimal;
@@ -47,6 +52,35 @@ class ProductOfferAvailabilityStorageCommunicationTester extends Actor
         }
 
         return new Decimal($productOfferAvailabilityStorageEntity->getData()[ProductOfferAvailabilityStorageTransfer::AVAILABILITY]);
+    }
+
+    public function countProductOfferAvailabilityStorageEntities(string $storeName, string $productOfferReference): int
+    {
+        return $this->getProductOfferAvailabilityStoragePropelQuery()
+            ->filterByStore($storeName)
+            ->filterByProductOfferReference($productOfferReference)
+            ->count();
+    }
+
+    public function haveProductOfferStockInNewWarehouse(
+        ProductOfferTransfer $productOfferTransfer,
+        StoreTransfer $storeTransfer,
+        int $quantity
+    ): ProductOfferStockTransfer {
+        $productOfferStockTransfer = $this->haveProductOfferStock([
+            ProductOfferStockTransfer::ID_PRODUCT_OFFER => $productOfferTransfer->getIdProductOfferOrFail(),
+            ProductOfferStockTransfer::QUANTITY => $quantity,
+            ProductOfferStockTransfer::STOCK => [
+                StockTransfer::STORE_RELATION => [
+                    StoreRelationTransfer::ID_STORES => [
+                        $storeTransfer->getIdStoreOrFail(),
+                    ],
+                ],
+            ],
+        ]);
+        $this->updateStock($productOfferStockTransfer->getStockOrFail()->setIsActive(true));
+
+        return $productOfferStockTransfer;
     }
 
     protected function getProductOfferAvailabilityStoragePropelQuery(): SpyProductOfferAvailabilityStorageQuery

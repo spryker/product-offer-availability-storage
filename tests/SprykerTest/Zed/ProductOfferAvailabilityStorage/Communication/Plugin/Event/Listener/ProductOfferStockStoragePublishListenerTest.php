@@ -101,4 +101,30 @@ class ProductOfferStockStoragePublishListenerTest extends Unit
 
         $this->assertSame($expectedAvailability, $productOfferAvailability->toInt());
     }
+
+    public function testProductOfferStockStoragePublishListenerStoresOneRowPerStoreWhenStocksOfTwoWarehousesOfOneStoreChange(): void
+    {
+        // Arrange
+        $storeTransfer = $this->tester->haveStore([StoreTransfer::NAME => static::STORE_NAME]);
+        $productOfferTransfer = $this->tester->haveProductOffer();
+        $this->tester->haveProductOfferStore($productOfferTransfer, $storeTransfer);
+        $firstProductOfferStockTransfer = $this->tester->haveProductOfferStockInNewWarehouse($productOfferTransfer, $storeTransfer, 5);
+        $secondProductOfferStockTransfer = $this->tester->haveProductOfferStockInNewWarehouse($productOfferTransfer, $storeTransfer, 3);
+
+        $productOfferStockStoragePublishListener = new ProductOfferStockStoragePublishListener();
+        $productOfferStockStoragePublishListener->setFacade($this->tester->getFacade());
+
+        // Act
+        $productOfferStockStoragePublishListener->handleBulk(
+            [
+                (new EventEntityTransfer())->setId($firstProductOfferStockTransfer->getIdProductOfferStock()),
+                (new EventEntityTransfer())->setId($secondProductOfferStockTransfer->getIdProductOfferStock()),
+            ],
+            ProductOfferEvents::ENTITY_SPY_PRODUCT_OFFER_PUBLISH,
+        );
+
+        // Assert
+        $this->assertSame(1, $this->tester->countProductOfferAvailabilityStorageEntities($storeTransfer->getName(), $productOfferTransfer->getProductOfferReference()));
+        $this->assertSame(8, $this->tester->getProductOfferAvailability($storeTransfer->getName(), $productOfferTransfer->getProductOfferReference())->toInt());
+    }
 }

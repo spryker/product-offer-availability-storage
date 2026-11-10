@@ -207,6 +207,8 @@ class ProductOfferAvailabilityStorageWriter implements ProductOfferAvailabilityS
      */
     protected function writeProductOfferAvailabilityStorageForRequests(array $productOfferAvailabilityRequestTransfers): void
     {
+        $productOfferAvailabilityRequestTransfers = $this->getUniqueProductOfferAvailabilityRequestTransfers($productOfferAvailabilityRequestTransfers);
+
         $productOfferReferences = array_map(
             static fn (ProductOfferAvailabilityRequestTransfer $transfer) => $transfer->getProductOfferReferenceOrFail(),
             $productOfferAvailabilityRequestTransfers,
@@ -225,7 +227,7 @@ class ProductOfferAvailabilityStorageWriter implements ProductOfferAvailabilityS
             if (!$productOfferAvailabilityTransfer && $productOfferAvailabilityStorageEntity) {
                 $this->remove($productOfferAvailabilityStorageEntity);
 
-                return;
+                continue;
             }
 
             if (!$productOfferAvailabilityStorageEntity) {
@@ -252,6 +254,28 @@ class ProductOfferAvailabilityStorageWriter implements ProductOfferAvailabilityS
             $this->persist($productOfferAvailabilityStorageEntity);
         }
         $this->commit();
+    }
+
+    /**
+     * @param array<\Generated\Shared\Transfer\ProductOfferAvailabilityRequestTransfer> $productOfferAvailabilityRequestTransfers
+     *
+     * @return array<string, \Generated\Shared\Transfer\ProductOfferAvailabilityRequestTransfer>
+     */
+    protected function getUniqueProductOfferAvailabilityRequestTransfers(array $productOfferAvailabilityRequestTransfers): array
+    {
+        $uniqueProductOfferAvailabilityRequestTransfers = [];
+
+        foreach ($productOfferAvailabilityRequestTransfers as $productOfferAvailabilityRequestTransfer) {
+            $key = sprintf(
+                '%s|%s',
+                $productOfferAvailabilityRequestTransfer->getProductOfferReferenceOrFail(),
+                $productOfferAvailabilityRequestTransfer->getStoreOrFail()->getNameOrFail(),
+            );
+
+            $uniqueProductOfferAvailabilityRequestTransfers[$key] = $productOfferAvailabilityRequestTransfer;
+        }
+
+        return $uniqueProductOfferAvailabilityRequestTransfers;
     }
 
     /**
